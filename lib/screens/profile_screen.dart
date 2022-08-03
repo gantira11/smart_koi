@@ -10,7 +10,6 @@ import 'package:smart_koi/components/custom_drawer.dart';
 import 'package:smart_koi/components/refresh_data.dart';
 import 'package:smart_koi/constant.dart';
 import 'package:smart_koi/network/api.dart';
-import 'package:smart_koi/router/router_generator.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -54,7 +53,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchProfile();
   }

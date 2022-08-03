@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:intl/intl.dart';
 import 'package:smart_koi/components/button_block.dart';
 import 'package:smart_koi/components/custom_drawer.dart';
 import 'package:smart_koi/components/productions_loader.dart';

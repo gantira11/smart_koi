@@ -80,7 +80,6 @@ class _PenggunaDetailScreenState extends State<PenggunaDetailScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     checkRole();
   }

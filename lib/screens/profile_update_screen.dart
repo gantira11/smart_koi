@@ -69,7 +69,6 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchProfile();
   }

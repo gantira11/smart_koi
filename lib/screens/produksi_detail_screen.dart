@@ -54,7 +54,6 @@ class _ProduksiDetailScreenState extends State<ProduksiDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(

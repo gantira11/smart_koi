@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class ContentDetailLoader extends StatelessWidget {

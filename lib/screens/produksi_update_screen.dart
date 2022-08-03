@@ -10,7 +10,6 @@ import 'package:smart_koi/components/outline_input.dart';
 import 'package:smart_koi/constant.dart';
 import 'package:smart_koi/network/api.dart';
 import 'package:smart_koi/router/router_generator.dart';
-import 'package:smart_koi/screens/produksi_detail_screen.dart';
 
 class ProduksiUpdateScreen extends StatefulWidget {
   const ProduksiUpdateScreen({
@@ -84,7 +83,6 @@ class _ProduksiUpdateScreenState extends State<ProduksiUpdateScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchData();
   }

@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_koi/constant.dart';
-import 'package:smart_koi/network/api.dart';
 
 class Barchart extends StatefulWidget {
   const Barchart({
@@ -34,7 +31,6 @@ class _BarchartState extends State<Barchart> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // fetchData();
     data = widget.data;

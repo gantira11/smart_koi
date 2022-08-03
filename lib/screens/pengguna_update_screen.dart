@@ -63,7 +63,6 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
       });
 
       final res = await Api().update('users/${widget.id}', data);
-      var body = jsonDecode(res.body);
 
       if (res.statusCode == 200) {
         EasyLoading.showSuccess('Data berhasil di update');
@@ -86,7 +85,6 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _fetchData();
   }
