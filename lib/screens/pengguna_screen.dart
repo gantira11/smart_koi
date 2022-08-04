@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:smart_koi/components/custom_drawer.dart';
 import 'package:smart_koi/components/pengguna_loader.dart';
 import 'package:smart_koi/components/refresh_data.dart';
@@ -21,6 +22,8 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
 
   List users = [];
   String searchUser = '';
+
+  int? _value = 2;
 
   Map<String, String> queryParams = {
     'start_date': '',
@@ -153,19 +156,116 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                               ),
                             ),
                             InkWell(
-                              onTap: () {
-                                setState(() {
-                                  if (queryParams['sort'] == 'id asc') {
-                                    queryParams['sort'] = 'id desc';
-                                    users = [];
-                                    fetchData();
-                                  } else {
-                                    queryParams['sort'] = 'id asc';
-                                    users = [];
-                                    fetchData();
-                                  }
-                                });
-                              },
+                              onTap: () => showMaterialModalBottomSheet(
+                                context: context,
+                                builder: (context) => Container(
+                                  height: size.height * 0.25,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Urutkan',
+                                              style: TextStyle(
+                                                fontFamily: 'Rubik',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () =>
+                                                  Navigator.pop(context),
+                                              child: Icon(
+                                                Icons.close,
+                                                size: 22,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Divider(thickness: 1),
+                                        SizedBox(height: 5),
+                                        GestureDetector(
+                                          onTap: () => setState(() {
+                                            _value = 1 as int;
+                                            queryParams['sort'] = 'id desc';
+                                            Navigator.pop(context);
+                                          }),
+                                          child: Container(
+                                            color: Colors.white,
+                                            width: double.infinity,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Terbaru',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Rubik',
+                                                  ),
+                                                ),
+                                                Radio(
+                                                  value: 1,
+                                                  groupValue: _value,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      _value = value as int;
+                                                      queryParams['sort'] =
+                                                          'id desc';
+                                                      Navigator.pop(context);
+                                                    });
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () => setState(() {
+                                            _value = 2 as int;
+                                            queryParams['sort'] = 'id asc';
+                                            Navigator.pop(context);
+                                          }),
+                                          child: Container(
+                                            color: Colors.white,
+                                            width: double.infinity,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Terlama',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Rubik',
+                                                  ),
+                                                ),
+                                                Radio(
+                                                  value: 2,
+                                                  groupValue: _value,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      _value = value as int;
+                                                      queryParams['sort'] =
+                                                          'id asc';
+                                                      Navigator.pop(context);
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               child: Container(
                                 width: size.width * 0.18,
                                 height: 45,
@@ -181,12 +281,13 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                       size: 20,
                                       color: primaryContent,
                                     ),
+                                    SizedBox(height: 2),
                                     Text(
                                       'Urutkan',
                                       style: TextStyle(
-                                        fontFamily: 'Rubik',
-                                        color: primaryContent,
-                                      ),
+                                          fontFamily: 'Rubik',
+                                          color: primaryContent,
+                                          fontSize: 12),
                                     )
                                   ],
                                 ),

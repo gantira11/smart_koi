@@ -33,7 +33,7 @@ class CardInformasiNilai extends StatelessWidget {
                   Column(
                     children: [
                       const Text(
-                        'Min',
+                        'Paling Rendah',
                         style: TextStyle(
                           fontFamily: 'Rubik',
                           fontSize: 12,
@@ -58,7 +58,7 @@ class CardInformasiNilai extends StatelessWidget {
                   Column(
                     children: [
                       const Text(
-                        'Max',
+                        'Paling Tinggi',
                         style: TextStyle(
                           fontFamily: 'Rubik',
                           fontSize: 12,

@@ -28,7 +28,7 @@ class CardInformasiNilaiLoader extends StatelessWidget {
                   Column(
                     children: const [
                       SkeletonLine(
-                        style: SkeletonLineStyle(width: 25),
+                        style: SkeletonLineStyle(width: 80),
                       ),
                       SizedBox(height: 5),
                       SkeletonLine(
@@ -44,7 +44,7 @@ class CardInformasiNilaiLoader extends StatelessWidget {
                   Column(
                     children: const [
                       SkeletonLine(
-                        style: SkeletonLineStyle(width: 25),
+                        style: SkeletonLineStyle(width: 80),
                       ),
                       SizedBox(height: 5),
                       SkeletonLine(

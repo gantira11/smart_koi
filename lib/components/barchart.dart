@@ -6,9 +6,11 @@ class Barchart extends StatefulWidget {
   const Barchart({
     Key? key,
     required this.data,
+    required this.sort,
   }) : super(key: key);
 
   final List data;
+  final String sort;
 
   @override
   State<Barchart> createState() => _BarchartState();
@@ -16,8 +18,8 @@ class Barchart extends StatefulWidget {
 
 class _BarchartState extends State<Barchart> {
   final Color leftBarColor = primary;
-  final Color middleBarColor = secondary;
-  final Color rightBarColor = const Color(0xFFC149AD);
+  final Color middleBarColor = const Color(0xFFC149AD);
+  final Color rightBarColor = secondary;
   final double width = 7;
 
   List<BarChartGroupData> rawBarGroups = [];
@@ -28,6 +30,9 @@ class _BarchartState extends State<Barchart> {
   List data = [];
   List<String> title = [];
   List<BarChartGroupData> items = [];
+  List<BarChartGroupData> itemsPermintaan = [];
+  List<BarChartGroupData> itemsPersediaan = [];
+  List<BarChartGroupData> itemsProduksi = [];
 
   @override
   void initState() {
@@ -47,16 +52,52 @@ class _BarchartState extends State<Barchart> {
       (index) => makeGroupData(
         index,
         data[index]['market_demand'],
-        data[index]['production'],
         data[index]['stock'],
+        data[index]['production'],
       ),
     );
 
-    rawBarGroups = items;
+    itemsPermintaan = List.generate(
+      data.length,
+      (index) => makeGroupData(
+        index,
+        0,
+        data[index]['market_demand'],
+        0,
+      ),
+    );
+
+    itemsPersediaan = List.generate(
+      data.length,
+      (index) => makeGroupData(
+        index,
+        0,
+        data[index]['stock'],
+        0,
+      ),
+    );
+
+    itemsProduksi = List.generate(
+      data.length,
+      (index) => makeGroupData(
+        index,
+        0,
+        data[index]['production'],
+        0,
+      ),
+    );
+
+    rawBarGroups = widget.sort == ''
+        ? items
+        : widget.sort == 'permintaan'
+            ? itemsPermintaan
+            : widget.sort == 'persediaan'
+                ? itemsPersediaan
+                : widget.sort == 'produksi'
+                    ? itemsProduksi
+                    : items;
 
     showingBarGroups = rawBarGroups;
-
-    print(widget.data);
   }
 
   @override
@@ -69,7 +110,8 @@ class _BarchartState extends State<Barchart> {
               child: Card(
                 elevation: 5,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
@@ -91,7 +133,7 @@ class _BarchartState extends State<Barchart> {
                             'Grafik Produksi 3 Periode Terakhir',
                             style: TextStyle(
                               color: Color(0xff77839a),
-                              fontSize: 18,
+                              fontSize: 14,
                               fontFamily: 'Rubik',
                               fontWeight: FontWeight.w500,
                             ),
@@ -107,7 +149,7 @@ class _BarchartState extends State<Barchart> {
                       Expanded(
                         child: BarChart(
                           BarChartData(
-                            maxY: 4000,
+                            maxY: widget.sort == 'persediaan' ? 200 : 4000,
                             titlesData: FlTitlesData(
                               show: true,
                               rightTitles: AxisTitles(
@@ -128,7 +170,9 @@ class _BarchartState extends State<Barchart> {
                                   showTitles: true,
                                   reservedSize: 28,
                                   interval: 1,
-                                  getTitlesWidget: leftTitles,
+                                  getTitlesWidget: widget.sort == 'persediaan'
+                                      ? leftTitlesPersediaan
+                                      : leftTitles,
                                 ),
                               ),
                             ),
@@ -159,77 +203,6 @@ class _BarchartState extends State<Barchart> {
                       const SizedBox(
                         height: 12,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: leftBarColor,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                const Text(
-                                  'Permintaan',
-                                  style: TextStyle(
-                                    fontFamily: 'Rubik',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: middleBarColor,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                const Text(
-                                  'Produksi',
-                                  style: TextStyle(
-                                    fontFamily: 'Rubik',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: rightBarColor,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                const Text(
-                                  'Persediaan',
-                                  style: TextStyle(
-                                    fontFamily: 'Rubik',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
@@ -258,10 +231,45 @@ class _BarchartState extends State<Barchart> {
     } else {
       return Container();
     }
+
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 0,
-      child: Text(text, style: style),
+      space: 2,
+      child: Text(
+        text,
+        style: style,
+      ),
+    );
+  }
+
+  Widget leftTitlesPersediaan(double value, TitleMeta meta) {
+    const style = TextStyle(
+      color: Color(0xff7589a2),
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
+    );
+    String text;
+    if (value == 0) {
+      text = '0';
+    } else if (value == 50) {
+      text = '50';
+    } else if (value == 100) {
+      text = '100';
+    } else if (value == 150) {
+      text = '150';
+    } else if (value == 200) {
+      text = '200';
+    } else {
+      return Container();
+    }
+
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      space: 2,
+      child: Text(
+        text,
+        style: style,
+      ),
     );
   }
 
@@ -273,19 +281,19 @@ class _BarchartState extends State<Barchart> {
       style: const TextStyle(
         color: Color(0xff7589a2),
         fontWeight: FontWeight.bold,
-        fontSize: 14,
+        fontSize: 12,
       ),
     );
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 16, //margin top
+      space: 12, //margin top
       child: text,
     );
   }
 
   BarChartGroupData makeGroupData(int x, int y1, int y2, int y3) {
-    return BarChartGroupData(barsSpace: 4, x: x, barRods: [
+    return BarChartGroupData(barsSpace: 3, x: x, barRods: [
       BarChartRodData(
         toY: y1.toDouble(),
         color: leftBarColor,
@@ -293,7 +301,13 @@ class _BarchartState extends State<Barchart> {
       ),
       BarChartRodData(
         toY: y2.toDouble(),
-        color: middleBarColor,
+        color: widget.sort == 'permintaan'
+            ? leftBarColor
+            : widget.sort == 'persediaan'
+                ? middleBarColor
+                : widget.sort == 'produksi'
+                    ? rightBarColor
+                    : middleBarColor,
         width: width,
       ),
       BarChartRodData(

@@ -44,6 +44,8 @@ dependencies:
   fl_chart: ^0.55.0
   animated_splash_screen: ^1.3.0
   flutter_launcher_icons: ^0.9.3
+  modal_bottom_sheet: ^2.0.1
+  dropdown_button2: ^1.4.0
 
 dev_dependencies:
   flutter_test:

@@ -143,7 +143,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(height: 3),
                                     Text(
-                                      'AS ${profile['data']['role']}',
+                                      profile['data']['role'] == 'ADMIN'
+                                          ? 'Admin'
+                                          : profile['data']['role'] ==
+                                                  'HEAD_OFFICER'
+                                              ? 'Kepala Petugas'
+                                              : 'Petugas',
                                       style: const TextStyle(
                                         fontFamily: 'Rubik',
                                         fontSize: 12,
@@ -202,18 +207,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             Row(
                               children: const <Widget>[
                                 Icon(Icons.bubble_chart_outlined),
-                                SizedBox(width: 8),
+                                SizedBox(width: 10),
                                 Text(
                                   'Fitur',
                                   style: TextStyle(
                                     fontFamily: 'Rubik',
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 18,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 15),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [

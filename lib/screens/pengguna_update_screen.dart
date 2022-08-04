@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:smart_koi/components/button_block.dart';
@@ -31,6 +32,9 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  List<String> jabatan = ['Admin', 'Kepala Petugas', 'Petugas'];
+  String? selectedValue;
+
   bool showPassword = true;
 
   Future<void> _fetchData() async {
@@ -41,7 +45,11 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
       if (res.statusCode == 200) {
         setState(() {
           _namaController.text = body['data']['name'];
-          _jabatanController.text = body['data']['role'];
+          selectedValue = body['data']['role'] == 'ADMIN'
+              ? 'Admin'
+              : body['data']['role'] == 'HEAD_OFFICER'
+                  ? 'Kepala Petugas'
+                  : 'Petugas';
           _noTelpController.text = body['data']['phone_number'];
           _usernameController.text = body['data']['username'];
         });
@@ -133,16 +141,75 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
                   },
                 ),
                 const SizedBox(height: 15),
-                OutlineInput(
-                  controller: _jabatanController,
-                  labelText: 'Jabatan',
-                  validator: (_jabatanController) {
-                    if (_jabatanController == null ||
-                        _jabatanController.isEmpty) {
+                DropdownButtonFormField2(
+                  value: selectedValue,
+                  style: TextStyle(
+                    fontFamily: 'Rubik',
+                    color: neutral,
+                  ),
+                  items: jabatan
+                      .map((item) => DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(
+                              item,
+                              style: const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ))
+                      .toList(),
+                  validator: (value) {
+                    if (value == null) {
                       return 'Field tidak boleh kosong';
                     }
-                    return null;
                   },
+                  onChanged: (value) {
+                    setState(() {
+                      if (value == 'Admin') {
+                        _jabatanController.text = 'ADMIN';
+                      } else if (value == 'Kepala Petugas') {
+                        _jabatanController.text = 'HEAD_OFFICER';
+                      } else {
+                        _jabatanController.text = 'OFFICER';
+                      }
+                    });
+                  },
+                  onSaved: (value) {
+                    selectedValue = value.toString();
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    label: Text(
+                      'Jabatan',
+                      style: const TextStyle(
+                        fontFamily: 'Rubik',
+                        color: neutral,
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        width: 1,
+                        color: neutral,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        width: 1,
+                        color: neutral,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        width: 1,
+                        color: Colors.redAccent,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    isDense: true,
+                  ),
                 ),
                 const SizedBox(height: 15),
                 OutlineInput(
