@@ -10,4 +10,5 @@ const neutral = Color(0xFF021431);
 const neutralFocus = Color(0xFF021027);
 const neutralContent = Color(0xFFF0F6FF);
 
-final DateFormat formater = DateFormat('dd-MMM-yyyy');
+final DateFormat formater = DateFormat('dd-MM-yy');
+final DateFormat formatMMM = DateFormat('dd-MMM-yy');

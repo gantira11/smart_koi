@@ -279,7 +279,7 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
                                 dateMask: 'd-MMM-yyyy',
                                 style: const TextStyle(
                                   fontFamily: 'Rubik',
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 ),
                                 type: DateTimePickerType.date,
                                 firstDate: DateTime(2000),
@@ -327,7 +327,7 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
                                 dateMask: 'd-MMM-yyyy',
                                 style: const TextStyle(
                                   fontFamily: 'Rubik',
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 ),
                                 type: DateTimePickerType.date,
                                 firstDate: DateTime(2000),
@@ -499,9 +499,11 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
                                     Text(
                                       'Urutkan',
                                       style: TextStyle(
-                                          fontFamily: 'Rubik',
-                                          color: primaryContent,
-                                          fontSize: 12),
+                                        fontFamily: 'Rubik',
+                                        color: primaryContent,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -627,6 +629,7 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
                                                               const TextStyle(
                                                             fontFamily: 'Rubik',
                                                             color: secondary,
+                                                            fontSize: 12,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
@@ -645,8 +648,9 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
                                                                 'market_demand']
                                                             .toString(),
                                                         style: const TextStyle(
-                                                            fontFamily:
-                                                                'Rubik'),
+                                                          fontFamily: 'Rubik',
+                                                          fontSize: 12,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -660,8 +664,9 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
                                                         produksi[i]['stock']
                                                             .toString(),
                                                         style: const TextStyle(
-                                                            fontFamily:
-                                                                'Rubik'),
+                                                          fontFamily: 'Rubik',
+                                                          fontSize: 12,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -676,8 +681,9 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
                                                                 ['production']
                                                             .toString(),
                                                         style: const TextStyle(
-                                                            fontFamily:
-                                                                'Rubik'),
+                                                          fontFamily: 'Rubik',
+                                                          fontSize: 12,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

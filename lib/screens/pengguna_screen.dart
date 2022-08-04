@@ -286,9 +286,11 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                     Text(
                                       'Urutkan',
                                       style: TextStyle(
-                                          fontFamily: 'Rubik',
-                                          color: primaryContent,
-                                          fontSize: 12),
+                                        fontFamily: 'Rubik',
+                                        color: primaryContent,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -391,6 +393,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                                             color: secondary,
                                                             fontWeight:
                                                                 FontWeight.w500,
+                                                            fontSize: 12,
                                                           ),
                                                         ),
                                                       ),
@@ -415,6 +418,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                                                 : 'Petugas',
                                                         style: const TextStyle(
                                                           fontFamily: 'Rubik',
+                                                          fontSize: 12,
                                                         ),
                                                       ),
                                                     ),
@@ -433,6 +437,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                                             ['phone_number'],
                                                         style: const TextStyle(
                                                           fontFamily: 'Rubik',
+                                                          fontSize: 12,
                                                         ),
                                                       ),
                                                     ),

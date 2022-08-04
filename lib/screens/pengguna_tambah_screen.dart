@@ -26,7 +26,7 @@ class _PenggunaTambahScreenState extends State<PenggunaTambahScreen> {
   final TextEditingController _usernamesController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  List<String> jabatan = ['Admin', 'Kepala Petugas', 'Petugas'];
+  List<String> jabatan = ['Kepala Petugas', 'Petugas'];
   String? selectedValue;
 
   bool showPassword = true;

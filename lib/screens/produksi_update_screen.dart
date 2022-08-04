@@ -105,6 +105,7 @@ class _ProduksiUpdateScreenState extends State<ProduksiUpdateScreen> {
           'Ubah data histori produksi',
           style: TextStyle(
             fontFamily: 'Rubik',
+            fontSize: 18,
           ),
         ),
       ),
@@ -215,7 +216,7 @@ class _ProduksiUpdateScreenState extends State<ProduksiUpdateScreen> {
       bottomSheet: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ButtonBlock(
-          buttonText: 'Update',
+          buttonText: 'Ubah Data',
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               // EasyLoading.show(status: 'Mohon Tunggu');

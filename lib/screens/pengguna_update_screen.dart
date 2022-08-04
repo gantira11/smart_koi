@@ -32,7 +32,7 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  List<String> jabatan = ['Admin', 'Kepala Petugas', 'Petugas'];
+  List<String> jabatan = ['Kepala Petugas', 'Petugas'];
   String? selectedValue;
 
   bool showPassword = true;
@@ -259,7 +259,7 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
       bottomSheet: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ButtonBlock(
-          buttonText: 'Simpan',
+          buttonText: 'Ubah Data',
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               EasyLoading.show(status: 'Mohon Tunggu');
