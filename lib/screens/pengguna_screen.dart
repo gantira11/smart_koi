@@ -159,7 +159,8 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                               onTap: () => showMaterialModalBottomSheet(
                                 context: context,
                                 builder: (context) => Container(
-                                  height: size.height * 0.25,
+                                  color: Colors.white,
+                                  height: 180,
                                   child: Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: Column(
@@ -191,7 +192,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                         SizedBox(height: 5),
                                         GestureDetector(
                                           onTap: () => setState(() {
-                                            _value = 1 as int;
+                                            _value = 1;
                                             queryParams['sort'] = 'id desc';
                                             Navigator.pop(context);
                                           }),
@@ -227,7 +228,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                         ),
                                         GestureDetector(
                                           onTap: () => setState(() {
-                                            _value = 2 as int;
+                                            _value = 2;
                                             queryParams['sort'] = 'id asc';
                                             Navigator.pop(context);
                                           }),

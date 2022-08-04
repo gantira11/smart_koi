@@ -162,6 +162,7 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
                     if (value == null) {
                       return 'Field tidak boleh kosong';
                     }
+                    return null;
                   },
                   onChanged: (value) {
                     setState(() {

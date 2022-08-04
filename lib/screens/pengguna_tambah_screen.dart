@@ -61,7 +61,6 @@ class _PenggunaTambahScreenState extends State<PenggunaTambahScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -124,6 +123,7 @@ class _PenggunaTambahScreenState extends State<PenggunaTambahScreen> {
                     if (value == null) {
                       return 'Field tidak boleh kosong';
                     }
+                    return null;
                   },
                   onChanged: (value) {
                     setState(() {
