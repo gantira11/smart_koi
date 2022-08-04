@@ -29,6 +29,8 @@ class _ProduksiDetailScreenState extends State<ProduksiDetailScreen> {
 
       if (res.statusCode == 200) {
         return body['data'];
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -38,6 +40,7 @@ class _ProduksiDetailScreenState extends State<ProduksiDetailScreen> {
   void _deleteData() async {
     try {
       final res = await Api().delete('history-productions/${widget.id}');
+      var body = jsonDecode(res.body);
 
       if (res.statusCode == 200) {
         Navigator.pushReplacementNamed(context, 'produksi');
@@ -46,6 +49,8 @@ class _ProduksiDetailScreenState extends State<ProduksiDetailScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);

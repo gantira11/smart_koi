@@ -62,6 +62,7 @@ class _ProduksiUpdateScreenState extends State<ProduksiUpdateScreen> {
       });
 
       final res = await Api().update('history-productions/${widget.id}', data);
+      var body = jsonDecode(res.body);
 
       if (res.statusCode == 200) {
         Navigator.popUntil(context, ModalRoute.withName('produksi'));
@@ -75,6 +76,8 @@ class _ProduksiUpdateScreenState extends State<ProduksiUpdateScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -219,7 +222,6 @@ class _ProduksiUpdateScreenState extends State<ProduksiUpdateScreen> {
           buttonText: 'Ubah Data',
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              // EasyLoading.show(status: 'Mohon Tunggu');
               _update();
             }
           },

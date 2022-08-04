@@ -36,6 +36,7 @@ class _ProduksiTambahScreenState extends State<ProduksiTambahScreen> {
       });
 
       final res = await Api().store('history-productions', data);
+      var body = jsonDecode(res.body);
 
       if (res.statusCode == 200) {
         EasyLoading.dismiss();
@@ -45,6 +46,8 @@ class _ProduksiTambahScreenState extends State<ProduksiTambahScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);

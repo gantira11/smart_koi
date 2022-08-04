@@ -43,16 +43,18 @@ class _PenggunaTambahScreenState extends State<PenggunaTambahScreen> {
 
       final res = await Api().store('users', data);
       var body = jsonDecode(res.body);
-      print(body);
+      print(body['messages']);
       print(res.statusCode);
       if (res.statusCode == 200) {
         EasyLoading.dismiss();
         Navigator.pushReplacementNamed(context, 'pengguna');
         EasyLoading.showSuccess('Data berhasil ditambah');
       } else if (res.statusCode == 401) {
-        EasyLoading.showInfo('Expired Token');
+        EasyLoading.showInfo(body['messages'].toString());
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);

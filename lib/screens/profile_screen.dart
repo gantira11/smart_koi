@@ -31,6 +31,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -84,7 +86,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             elevation: 5,
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding:
+                  const EdgeInsets.only(top: 12.0, left: 12.0, right: 12.0),
               child: Column(
                 children: [
                   Row(

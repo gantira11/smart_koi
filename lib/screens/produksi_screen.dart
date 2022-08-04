@@ -25,14 +25,14 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
   final TextEditingController _tanggalMulai = TextEditingController();
   final TextEditingController _tanggalSelesai = TextEditingController();
 
-  int _value = 2;
+  int _value = 1;
 
   Map<String, String> queryParams = {
     'start_date': '',
     'end_date': '',
     'limit': '999',
     'page': '1',
-    'sort': 'id asc'
+    'sort': 'period_date desc'
   };
 
   Future<void> fetchProduksi() async {
@@ -46,6 +46,8 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -59,6 +61,8 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
 
       if (res.statusCode == 200) {
         return body['data'];
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);

@@ -40,6 +40,8 @@ class _PenggunaDetailScreenState extends State<PenggunaDetailScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -60,6 +62,8 @@ class _PenggunaDetailScreenState extends State<PenggunaDetailScreen> {
             showButton = false;
           });
         }
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -69,9 +73,12 @@ class _PenggunaDetailScreenState extends State<PenggunaDetailScreen> {
   void _delete() async {
     try {
       final res = await Api().delete('users/${widget.id}');
+      var body = jsonDecode(res.body);
       if (res.statusCode == 200) {
         EasyLoading.showSuccess('Data berhasil dihapus');
         Navigator.pushReplacementNamed(context, 'pengguna');
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);

@@ -71,6 +71,7 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
       });
 
       final res = await Api().update('users/${widget.id}', data);
+      var body = jsonDecode(res.body);
 
       if (res.statusCode == 200) {
         EasyLoading.showSuccess('Data berhasil di update');
@@ -85,6 +86,8 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -242,13 +245,6 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
                       color: Colors.grey,
                     ),
                   ),
-                  validator: (_passwordController) {
-                    if (_passwordController == null ||
-                        _passwordController.isEmpty) {
-                      return 'Field tidak boleh kosong';
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(height: 90),
               ],

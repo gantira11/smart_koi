@@ -29,12 +29,12 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
   bool showCard = false;
 
   void hitungProduksi() async {
-    var data = jsonEncode({
-      'market_demand': int.parse(_permintaanController.text),
-      'stock': int.parse(_persediaanController.text)
-    });
-
     try {
+      var data = jsonEncode({
+        'market_demand': int.parse(_permintaanController.text),
+        'stock': int.parse(_persediaanController.text)
+      });
+
       final res = await Api().store('calculate-productions', data);
       final resProfile = await Api().fetchData('profile');
 
@@ -50,6 +50,8 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);

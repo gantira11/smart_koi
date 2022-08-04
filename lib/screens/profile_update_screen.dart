@@ -41,6 +41,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
         EasyLoading.showInfo('Expired Token');
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
@@ -56,11 +58,13 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
       });
 
       final res = await Api().update('profile', data);
-      print(res.statusCode);
+      var body = jsonDecode(res.body);
 
       if (res.statusCode == 200) {
         Navigator.pushReplacementNamed(context, 'profile');
         EasyLoading.showSuccess('Data berhasil di update');
+      } else {
+        EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
       throw Exception(e);
