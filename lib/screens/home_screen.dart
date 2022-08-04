@@ -231,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                 ),
                                 ButtonIcon(
-                                  buttonText: 'Kalkulator Poduksi',
+                                  buttonText: 'Kalkulator Produksi',
                                   iconData: Icons.calculate_outlined,
                                   onTap: () {
                                     Navigator.pushNamed(
