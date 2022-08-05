@@ -136,13 +136,6 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                     color: Colors.grey,
                   ),
                 ),
-                validator: (_passwordController) {
-                  if (_passwordController == null ||
-                      _passwordController.isEmpty) {
-                    return 'Field tidak boleh kosong';
-                  }
-                  return null;
-                },
               ),
               const SizedBox(height: 15),
               OutlineInput(
