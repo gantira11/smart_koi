@@ -40,6 +40,7 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
 
       var body = jsonDecode(res.body);
       var bodyProfile = jsonDecode(resProfile.body);
+      print(body);
 
       if (res.statusCode == 200) {
         setState(() {
@@ -170,7 +171,7 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Perhitungan ${user['name']}',
+                                'Perhitungan Fuzzy Tsukamoto',
                                 style: const TextStyle(
                                   fontFamily: 'Rubik',
                                   fontSize: 18,

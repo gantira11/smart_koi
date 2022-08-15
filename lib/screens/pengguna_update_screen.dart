@@ -169,9 +169,7 @@ class _PenggunaUpdateScreenState extends State<PenggunaUpdateScreen> {
                   },
                   onChanged: (value) {
                     setState(() {
-                      if (value == 'Admin') {
-                        _jabatanController.text = 'ADMIN';
-                      } else if (value == 'Kepala Petugas') {
+                      if (value == 'Kepala Petugas') {
                         _jabatanController.text = 'HEAD_OFFICER';
                       } else {
                         _jabatanController.text = 'OFFICER';
