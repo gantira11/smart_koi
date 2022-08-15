@@ -62,6 +62,7 @@ class _ProduksiScreenState extends State<ProduksiScreen> {
       if (res.statusCode == 200) {
         return body['data'];
       } else {
+        EasyLoading.dismiss();
         EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {

@@ -32,6 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
       } else {
+        EasyLoading.dismiss();
         EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {

@@ -40,7 +40,6 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
 
       var body = jsonDecode(res.body);
       var bodyProfile = jsonDecode(resProfile.body);
-      print(body);
 
       if (res.statusCode == 200) {
         setState(() {
@@ -55,6 +54,7 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
         EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
+      EasyLoading.showInfo("Terjadi Kesalahan");
       throw Exception(e);
     }
   }

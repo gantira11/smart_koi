@@ -77,9 +77,11 @@ class _ProduksiUpdateScreenState extends State<ProduksiUpdateScreen> {
         Navigator.pushNamedAndRemoveUntil(
             context, 'login', (Route<dynamic> route) => false);
       } else {
+        EasyLoading.dismiss();
         EasyLoading.showInfo(body['messages'].toString());
       }
     } catch (e) {
+      EasyLoading.showInfo("Terjadi Kesalahan");
       throw Exception(e);
     }
   }
